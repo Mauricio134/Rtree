@@ -102,5 +102,7 @@ int main(int argc, char* argv[])
 	cout << endl;
 	rtree.LEAF_();
 
+	cout << rtree.S(104,54) << endl;
+
 	return 0;
 }

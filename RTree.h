@@ -118,6 +118,9 @@ public:
 	void LEAF(Node *);
 	void LEAF_();
 
+	bool Search1(Node * , double, double);
+	bool S(double, double);
+
 protected:
 
 	Node* AllocNode();

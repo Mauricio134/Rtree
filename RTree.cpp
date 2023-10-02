@@ -973,3 +973,30 @@ void RTree::LEAF(Node * node){
 void RTree::LEAF_(){
 	LEAF(m_root);
 }
+
+bool RTree::Search1(Node * node,double x, double y){
+	if(!node) return 0;
+	if(node->m_level == 0){
+		for(int j = 0; j < 4; j++){
+			if(node->m_branch[j].m_data.size() > 0){
+				for(auto p: node->m_branch[j].m_data){
+					if(x == p.first && y == p.second){
+						return 1;
+					}
+				}
+			}
+		}
+		return 0;
+	}
+
+	for(int i = 0; i < 4; i++){
+		if(x >= node->m_branch[i].m_rect.m_min[0] && x <= node->m_branch[i].m_rect.m_max[0] && y >= node->m_branch[i].m_rect.m_min[1] && y <= node->m_branch[i].m_rect.m_max[1]){
+			return this->Search1(node->m_branch[i].m_child, x, y);
+		}
+	}
+	return 0;
+}
+
+bool RTree::S(double x, double y){
+	return Search1(m_root, x, y);
+}
